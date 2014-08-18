@@ -3,10 +3,19 @@
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
+  <appender name="console" class="org.apache.log4j.ConsoleAppender">
+    <param name="Append" value="true" />
+    <param name="Encoding" value="utf-8" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d %-5p %c - %m%n" />
+    </layout>
+  </appender>
+
   <appender name="trace" class="org.apache.log4j.DailyRollingFileAppender">
     <param name="File" value="./logs/sastruts-extension.log" />
     <param name="Append" value="true" />
     <param name="datePattern" value="'.'yyyy-MM-dd" />
+    <param name="Encoding" value="utf-8" />
     <layout class="org.apache.log4j.PatternLayout">
       <param name="ConversionPattern" value="%d %-5p %c - %m%n" />
     </layout>
@@ -14,16 +23,19 @@
 
   <logger name="org.apache">
     <level value="debug" />
+    <appender-ref ref="console" />
     <appender-ref ref="trace" />
   </logger>
 
   <logger name="org.seasar">
     <level value="debug" />
+    <appender-ref ref="console" />
     <appender-ref ref="trace" />
   </logger>
 
   <logger name="jp.ardito">
     <level value="debug" />
+    <appender-ref ref="console" />
     <appender-ref ref="trace" />
   </logger>
 

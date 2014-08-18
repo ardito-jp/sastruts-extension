@@ -6,7 +6,7 @@
 
   <component class="org.seasar.framework.convention.impl.NamingConventionImpl">
     <initMethod name="addRootPackageName">
-      <arg>"jp.ardito.seasar.struts.apps"</arg>
+      <arg>"jp.ardito.seasar.struts.test"</arg>
     </initMethod>
   </component>
 
