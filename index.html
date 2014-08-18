@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="SAStruts Extension : A Few, Useful Extensions for SAStruts (Seasar.Org)">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>SAStruts Extension</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ardito-jp/sastruts-extension">View on GitHub</a>
+
+          <h1 id="project_title">SAStruts Extension</h1>
+          <h2 id="project_tagline">A Few, Useful Extensions for SAStruts (Seasar.Org)</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/ardito-jp/sastruts-extension/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ardito-jp/sastruts-extension/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="what-is-sastruts-extension-" class="anchor" href="#what-is-sastruts-extension-"><span class="octicon octicon-link"></span></a>What is SAStruts Extension ?</h1>
+
+<p>A Few, Useful Extensions for <a href="http://sastruts.seasar.org/">SAStruts</a> (Seasar.Org)  </p>
+
+<p><a href="http://sastruts.seasar.org/">SAStruts</a> (Seasar.Org) の拡張コンポーネントです。<br>
+といっても大袈裟な機能はありません。<br>
+SAStruts で開発する際の良い意味で「おまけ的な存在」でありたいと思います。(2008/08/31)  </p>
+
+<h1>
+<a name="postscript" class="anchor" href="#postscript"><span class="octicon octicon-link"></span></a>Postscript</h1>
+
+<p>Seasar および SAStruts の機能開発 (進化) も止まり、  SAStruts Extension も 2年以上メンテナンスせずに放置していたのですが、<br>
+引き続き利用してくださっている方もいらっしゃるので細々とメンテナンスを続けていきます。<br>
+ホスティングサービスを Google Code から GitHub に移行しました。(2014/07/07)  </p>
+
+<h1>
+<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h1>
+
+<ul>
+<li><p>Action Proxying<br>
+認証や認可といった事前処理 (アクセス制御) や事後処理の仕組みを「アノテーション・ベースで」提供します。<br>
+ActionProxy を実装したプロキシをAction のクラスやメソッドに対して <a href="https://github.com/Proxy" class="user-mention">@Proxy</a> アノテーションで割り当てます。  </p></li>
+<li><p>Action Field Protecting<br>
+リクエストパラメーターによる Action フィールドの上書きを禁止するモードを提供します。<br>
+SAStruts 標準仕様では<br>
+ActionForm を定義するとパラメータの保存対象は @ActionForm を用いて指定した ActionForm's field になります。<br>
+ActionForm を定義しないとパラメータの保存対象は Action's field になります。<br>
+　後者の場合に意図しないパラメータによる上書きを防止できます。   </p></li>
+</ul><h1>
+<a name="quickstart" class="anchor" href="#quickstart"><span class="octicon octicon-link"></span></a>Quickstart</h1>
+
+<pre><code>&lt;repositories&gt;
+    &lt;repository&gt;&lt;!-- for Seasar Products --&gt;
+        &lt;id&gt;seasar.org.repo&lt;/id&gt;
+        &lt;url&gt;http://maven.seasar.org/maven2&lt;/url&gt;
+    &lt;/repository&gt;
+    &lt;repository&gt;&lt;!-- for SAStruts Extension --&gt;
+        &lt;id&gt;ardito.publish.repo&lt;/id&gt;
+        &lt;url&gt;http://ardito-jp.github.io/ardito/maven/repo&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+
+&lt;dependencies&gt;
+  ・
+  ・
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.seasar.sastruts&lt;/groupId&gt;
+        &lt;artifactId&gt;sa-struts&lt;/artifactId&gt;
+        &lt;version&gt;1.0.4-sp9&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;&lt;!-- SAStruts Extension --&gt;
+        &lt;groupId&gt;jp.ardito.seasar&lt;/groupId&gt;
+        &lt;artifactId&gt;sastruts-extension&lt;/artifactId&gt;
+        &lt;version&gt;1.0.0&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;  
+</code></pre>
+
+<h1>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p>Copyright 2009-2014 <a href="http://www.ardito.jp/">Ardito Co.,Ltd.</a> and the Others.  </p>
+
+<p>Licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">the Apache License, Version 2.0</a>.  </p>
+
+<h1>
+<a name="about-us" class="anchor" href="#about-us"><span class="octicon octicon-link"></span></a>About Us</h1>
+
+<p><a href="mailto:y_nihonyanagi@ardito.jp">y_nihonyanagi@ardito.jp</a>  </p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">SAStruts Extension maintained by <a href="https://github.com/ardito-jp">ardito-jp</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
