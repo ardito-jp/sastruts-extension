@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fileset-config file-format-version="1.2.0" simple-config="false" sync-formatter="false">
+  <local-check-config name="SAStruts Extension Checks" location="http://ardito-jp.github.io/ardito/checkstyle/checks_for_sastruts-extension.xml" type="remote" description="">
+    <additional-data name="cache-file" value="false"/>
+  </local-check-config>
+  <fileset name="SAStruts Extension Checks FileSet" enabled="true" check-config-name="SAStruts Extension Checks" local="true">
+    <file-match-pattern match-pattern=".java$" include-pattern="true"/>
+  </fileset>
+  <filter name="WriteProtectedFiles" enabled="true"/>
+  <filter name="FilesFromPackage" enabled="true">
+    <filter-data value="src/test/java"/>
+    <filter-data value="src/test/resources"/>
+  </filter>
+</fileset-config>

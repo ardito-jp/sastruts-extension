@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC
+  "-//SEASAR//DTD S2Container 2.4//EN" "http://www.seasar.org/dtd/components24.dtd">
+
+<components>
+
+  <include path="default-customizer.dicon" />
+
+  <component name="proxyCustomizer" class="org.seasar.framework.container.customizer.CustomizerChain">
+    <initMethod name="addAspectCustomizer">
+      <arg>"aop.traceInterceptor"</arg>
+    </initMethod>
+    <initMethod name="addAspectCustomizer">
+      <arg>"actionMessagesThrowsInterceptor"</arg>
+      <arg>true</arg>
+    </initMethod>
+    <initMethod name="addCustomizer">
+      <arg>
+        <component class="org.seasar.framework.container.customizer.TxAttributeCustomizer" />
+      </arg>
+    </initMethod>
+  </component>
+
+  <component name="actionCustomizer" class="org.seasar.framework.container.customizer.CustomizerChain">
+    <initMethod name="addAspectCustomizer">
+      <arg>"aop.traceInterceptor"</arg>
+    </initMethod>
+    <initMethod name="addAspectCustomizer">
+      <arg>"actionMessagesThrowsInterceptor"</arg>
+      <arg>true</arg>
+    </initMethod>
+    <initMethod name="addCustomizer">
+      <arg>
+        <component class="org.seasar.framework.container.customizer.TxAttributeCustomizer" />
+      </arg>
+    </initMethod>
+    <initMethod name="addCustomizer">
+      <arg>
+<!--
+        <component class="org.seasar.struts.customizer.ActionCustomizer" />
+-->
+        <component class="jp.ardito.seasar.struts.customizer.A3ActionCustomizer">
+          <property name="actionReadOnly">new java.lang.Boolean("true")</property>
+          <initMethod name="addGlobalProxyClass">
+            <arg>@jp.ardito.seasar.struts.test.proxy.AuthenticationProxy@class</arg>
+          </initMethod>
+        </component>
+      </arg>
+    </initMethod>
+  </component>
+
+  <component name="formCustomizer" class="org.seasar.framework.container.customizer.CustomizerChain" />
+
+</components>
