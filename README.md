@@ -13,7 +13,7 @@ SAStruts で開発する際の良い意味で「おまけ的な存在」であ�
 
 Seasar および SAStruts の機能開発 (進化) も止まり、  SAStruts Extension も 2年以上メンテナンスせずに放置していたのですが、  
 引き続き利用してくださっている方もいらっしゃるので細々とメンテナンスを続けていきます。  
-ホスティングサービスを Google Code から GitHub に移行しました。(2014/07/07)  
+ホスティングサービスを Google Code から [GitHub](https://github.com/ardito-jp/sastruts-extension) に移行しました。(2014/07/07)  
 
 
 
