@@ -17,6 +17,35 @@
 
 	<description><![CDATA["SAStruts Extension Quickstart" is Quickstart App for SAStruts with SAStruts Extension on Servlet Container.]]></description>
 
+	<url>http://yohjizzz.github.io/sastruts-extension</url>
+
+	<organization>
+		<name>Ardito Co.,Ltd.</name>
+		<url>http://www.ardito.jp</url>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+
+	<inceptionYear>2009</inceptionYear>
+
+	<developers>
+		<developer>
+			<id>yohjizzz</id>
+			<name>Yohji Nihonyanagi</name>
+			<email>y_nihonyanagi@ardito.jp</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<contributors />
+
 	<properties>
 <!-- Environment Values -->
 		<java.version>1.6</java.version>
@@ -148,6 +177,12 @@
 			<artifactId>easymock</artifactId>
 			<version>${easymock.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-servlet_2.5_spec</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seasar.container</groupId>

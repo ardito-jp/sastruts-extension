@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+
+<components namespace="s2junit4">
+
+<!--
+  # org.seasar.framework.unit.InternalTestContext インタフェースの実装です。
+  # org.seasar.framework.unit.InternalTestContext インタフェースの実装は必ず s2junit4.dicon 内に定義される必要があります。
+  # このコンポーネントはテストの実行時情報を提供します。
+  # 他のコンポーネントはこのコンポーネントを参照することで実行時のテストクラスやテストメソッドの名称を使った命名規則を定義できます。
+-->
+	<component name="context" class="org.seasar.framework.unit.impl.InternalTestContextImpl"/>
+
+<!--
+  # org.seasar.framework.unit.DataAccessor インタフェースの実装です。定義は必須ではありません。
+  # データベースやExcelのデータにアクセスするためのメソッドを提供します。
+-->
+<!--
+	<component class="org.seasar.framework.unit.impl.DataAccessorImpl"/>
+-->
+
+<!--
+  # org.seasar.framework.unit.ConfigFileIncluder インタフェースの実装です。定義は必須ではありません。
+  # このコンポーネントは設定ファイルのインクルードを行います。
+  # デフォルトではjavaee5.diconが固定で指定され、テストケースごとの設定ファイルが命名規約を用いて指定されています。
+-->
+<!--
+	<component class="org.seasar.framework.unit.impl.ConfigFileIncluderImpl">
+		<initMethod name="addConfigFile">
+			<arg>"javaee5.dicon"</arg>
+		</initMethod>
+		<initMethod name="addConfigFile">
+			<arg>context.testClassShortName + ".dicon"</arg>
+		</initMethod>
+	</component>
+-->
+
+<!--
+  # org.seasar.framework.unit.TestDataPreparer の実装です。定義は必須ではありません。
+  # このコンポーネントは Excel から読み取ったテストデータをデータベースに書き込みます。
+  # デフォルトでは事前データをもつExcelのパスが命名規則を用いて指定されています。
+-->
+<!--
+	<component class="org.seasar.framework.unit.impl.TestDataPreparerImpl">
+		<initMethod name="addTestDataXlsPath">
+			<arg>context.testClassShortName + "_" + context.testMethodName + ".xls"</arg>
+		</initMethod>
+		<initMethod name="addTestDataXlsPath">
+			<arg>context.testClassShortName + ".xls"</arg>
+		</initMethod>
+	</component>
+-->
+
+<!--
+  # org.seasar.framework.unit.ExpectedReader の実装です。定義は必須ではありません。
+  # このコンポーネントはExcelを読みDataSetを返します。
+  # デフォルトでは期待値をもつExcelのパスが命名規則を用いて指定されています。
+-->
+<!--
+	<component class="org.seasar.framework.unit.impl.ExpectedDataReaderImpl">
+		<initMethod name="addExpectedDataXlsPath">
+			<arg>context.testClassShortName + "_" + context.testMethodName + "_Expected" + ".xls"</arg>
+		</initMethod>
+	</component>
+-->
+
+</components>

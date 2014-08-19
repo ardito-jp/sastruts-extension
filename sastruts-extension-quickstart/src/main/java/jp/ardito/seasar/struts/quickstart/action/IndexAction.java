@@ -30,7 +30,7 @@ public class IndexAction {
 	 * <p>~/quickstart/</p>
 	 * @return リクエスト転送先情報
 	 */
-	@Execute
+	@Execute(validator = false)
 	public String index() {
 		return "index.jsp";
 	}
@@ -39,7 +39,7 @@ public class IndexAction {
 	 * <p>~/quickstart/hello</p>
 	 * @return リクエスト転送先情報
 	 */
-	@Execute
+	@Execute(validator = false)
 	public String hello() {
 		return "hello.jsp";
 	}
