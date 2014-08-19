@@ -22,16 +22,16 @@ import jp.ardito.seasar.struts.proxy.Proxy;
 import jp.ardito.seasar.struts.proxy.ProxyType;
 import jp.ardito.seasar.struts.quickstart.dto.LoginUserDto;
 import jp.ardito.seasar.struts.quickstart.form.AuthForm;
-import jp.ardito.seasar.struts.quickstart.proxy.AuthenticationProxy;
 import org.seasar.framework.container.SingletonS2Container;
 import org.seasar.framework.log.Logger;
 import org.seasar.struts.annotation.ActionForm;
 import org.seasar.struts.annotation.Execute;
+import org.seasar.struts.util.ResponseUtil;
 
 /**
  * @author Yohji Nihonyanagi
  */
-@Proxy(type = ProxyType.APPEND, proxy = AuthenticationProxy.class)
+@Proxy(type = ProxyType.NONE) // 一切のプロキシを適用しない → すべてのリクエストを受け付けるぞ！
 public class AuthAction {
 
 	private static final Logger LOGGER = Logger.getLogger(AuthAction.class);
@@ -48,7 +48,6 @@ public class AuthAction {
 	 * @return リクエスト転送先情報
 	 */
 	@Execute(validator = false)
-	@Proxy(type = ProxyType.NONE) // 一切のプロキシを適用しない → すべてのリクエストを受け付けるぞ！
 	public String index() {
 
 		if (this.request.getSession(false) != null) {
@@ -62,23 +61,20 @@ public class AuthAction {
 	 * @return リクエスト転送先情報
 	 */
 	@Execute(validator = true, input = "/auth.jsp")
-	@Proxy(type = ProxyType.NONE) // 一切のプロキシを適用しない → すべてのリクエストを受け付けるぞ！
 	public String login() {
 
-		LOGGER.debug("account=[" + this.authForm.account + "], password=["+ this.authForm.password + "]");
-
 		if (!this.authForm.account.equals("taro") || !this.authForm.password.equals("tarotaro")) {
+			LOGGER.log("IAPP0000", new Object[] {this.authForm.account, this.request.getRequestedSessionId()});
 			return "/auth.jsp";
 		}
 
-		// Success for Sign in!!
-		// Creating LoginUserDto instance in new session.
 		if (this.request.getSession(false) != null) {
 			this.request.getSession(false).invalidate();
 		}
 		LoginUserDto loginUserDto = SingletonS2Container.getComponent(LoginUserDto.class);
 		loginUserDto.setAccount(this.authForm.account);
 		loginUserDto.setAuthenticated(true);
+		LOGGER.log("IAPP0001", new Object[] {loginUserDto.getAccount(), this.request.getRequestedSessionId()});
 
 		// Redirecting to Index ("/").
 		return "/?redirect=true";
@@ -90,7 +86,12 @@ public class AuthAction {
 	 */
 	@Execute(validator = false)
 	public String logout() {
-		return "/auth.jsp";
+
+		if (this.request.getSession(false) != null) {
+			this.request.getSession(false).invalidate();
+		}
+		ResponseUtil.write("Bye!", "text/plain", "UTF-8");
+		return null;
 	}
 
 }
