@@ -14,11 +14,13 @@
       <arg>"actionMessagesThrowsInterceptor"</arg>
       <arg>true</arg>
     </initMethod>
+<!--
     <initMethod name="addCustomizer">
       <arg>
         <component class="org.seasar.framework.container.customizer.TxAttributeCustomizer" />
       </arg>
     </initMethod>
+-->
   </component>
 
   <component name="actionCustomizer" class="org.seasar.framework.container.customizer.CustomizerChain">
@@ -29,17 +31,16 @@
       <arg>"actionMessagesThrowsInterceptor"</arg>
       <arg>true</arg>
     </initMethod>
+<!--
     <initMethod name="addCustomizer">
       <arg>
         <component class="org.seasar.framework.container.customizer.TxAttributeCustomizer" />
       </arg>
     </initMethod>
+-->
     <initMethod name="addCustomizer">
       <arg>
-<!--
-        <component class="org.seasar.struts.customizer.ActionCustomizer" />
--->
-        <component class="jp.ardito.seasar.struts.customizer.A3ActionCustomizer">
+        <component class="jp.ardito.seasar.struts.customizer.A3ActionCustomizer"><!-- <component class="org.seasar.struts.customizer.ActionCustomizer" /> -->
           <property name="actionReadOnly">new java.lang.Boolean("false")</property>
 <!--
           <initMethod name="addGlobalProxyClass">

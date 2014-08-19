@@ -22,7 +22,7 @@
   </appender>
 
   <logger name="org.apache">
-    <level value="debug" />
+    <level value="info" />
     <appender-ref ref="console" />
     <appender-ref ref="trace" />
   </logger>

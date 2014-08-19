@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 
 import jp.ardito.seasar.struts.proxy.ActionProxy;
 import jp.ardito.seasar.struts.proxy.ProxyChain;
-import jp.ardito.seasar.struts.quickstart.dto.LoginUser;
+import jp.ardito.seasar.struts.quickstart.dto.LoginUserDto;
 
 /**
  * @author Yohji Nihonyanagi
@@ -27,17 +27,17 @@ import jp.ardito.seasar.struts.quickstart.dto.LoginUser;
 public class AuthenticationProxy implements ActionProxy {
 
 	@Resource
-	private LoginUser loginUser;
+	private LoginUserDto loginUserDto;
 
 	/*
 	 * @see ActionProxy#execute(ProxyChain)
 	 */
 	public String execute(ProxyChain proxyChain) throws Exception {
 
-		if (this.loginUser != null && this.loginUser.isAuthenticated()) {
-			return proxyChain.invoke();
+		if (this.loginUserDto != null && this.loginUserDto.isAuthenticated()) {
+			return proxyChain.invoke(); // Authenticated!!
 		} else {
-			return "/auth";
+			return "/auth?redirect=true"; // Not authenticated...
 		}
 	}
 

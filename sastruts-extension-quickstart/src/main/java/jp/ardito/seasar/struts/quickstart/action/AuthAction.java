@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 
 import jp.ardito.seasar.struts.proxy.Proxy;
 import jp.ardito.seasar.struts.proxy.ProxyType;
-import jp.ardito.seasar.struts.quickstart.dto.LoginUser;
+import jp.ardito.seasar.struts.quickstart.dto.LoginUserDto;
 import jp.ardito.seasar.struts.quickstart.proxy.AuthenticationProxy;
 import org.seasar.struts.annotation.Execute;
 
@@ -30,23 +30,23 @@ import org.seasar.struts.annotation.Execute;
 public class AuthAction {
 
 	@Resource
-	private LoginUser loginUser;
+	private LoginUserDto loginUserDto;
 
 	/**
 	 * <p>~/quickstart/auth</p>
 	 * @return リクエスト転送先情報
 	 */
-	@Execute
+	@Execute(validator = false)
 	@Proxy(type = ProxyType.NONE) // 一切のプロキシを適用しない → すべてのリクエストを受け付けるぞ！
 	public String index() {
-		return "auth.jsp";
+		return "/auth.jsp";
 	}
 
 	/**
 	 * <p>~/quickstart/auth/login</p>
 	 * @return リクエスト転送先情報
 	 */
-	@Execute
+	@Execute(validator = false)
 	@Proxy(type = ProxyType.NONE) // 一切のプロキシを適用しない → すべてのリクエストを受け付けるぞ！
 	public String login() {
 		return "/?redirect=true";
@@ -56,7 +56,7 @@ public class AuthAction {
 	 * <p>~/quickstart/auth/logout</p>
 	 * @return リクエスト転送先情報
 	 */
-	@Execute
+	@Execute(validator = false)
 	public String logout() {
 		return "/auth.jsp";
 	}

@@ -3,8 +3,6 @@
 <fileset-config file-format-version="1.2.0" simple-config="true" sync-formatter="false">
   <local-check-config name="SAStruts Extension Checks" location="http://ardito-jp.github.io/ardito/checkstyle/checks_for_sastruts-extension.xml" type="remote" description="">
     <additional-data name="cache-file" value="false"/>
-    <additional-data name="cache-props-file-location" value="null_1408334316765_cache.properties"/>
-    <additional-data name="cache-file-location" value="null_1408334316765_cache.xml"/>
   </local-check-config>
   <fileset name="すべて" enabled="true" check-config-name="SAStruts Extension Checks" local="true">
     <file-match-pattern match-pattern="." include-pattern="true"/>

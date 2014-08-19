@@ -12,4 +12,6 @@
   <include path="j2ee.dicon" />
 -->
 
+  <component name="actionMessagesThrowsInterceptor" class="org.seasar.struts.interceptor.ActionMessagesThrowsInterceptor" />
+
 </components>

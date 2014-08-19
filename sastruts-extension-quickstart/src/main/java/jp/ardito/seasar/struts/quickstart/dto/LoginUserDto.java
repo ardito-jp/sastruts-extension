@@ -25,7 +25,7 @@ import org.seasar.framework.container.annotation.tiger.InstanceType;
  */
 @SuppressWarnings("javadoc")
 @Component(instance = InstanceType.SESSION)
-public class LoginUser implements Serializable {
+public class LoginUserDto implements Serializable {
 
 	private boolean authenticated;
 
