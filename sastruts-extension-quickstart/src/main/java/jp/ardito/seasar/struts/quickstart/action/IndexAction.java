@@ -32,7 +32,7 @@ public class IndexAction {
 	 */
 	@Execute(validator = false)
 	public String index() {
-		return "index.jsp";
+		return "/index.jsp";
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class IndexAction {
 	 */
 	@Execute(validator = false)
 	public String hello() {
-		return "hello.jsp";
+		return "/hello.jsp";
 	}
 
 }

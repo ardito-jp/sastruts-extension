@@ -83,7 +83,7 @@ public class IndexActionTest {
 	public final void test_index() {
 
 		assertNotNull(this.indexAction);
-		assertEquals("index.jsp", this.indexAction.index());
+		assertEquals("/index.jsp", this.indexAction.index());
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class IndexActionTest {
 	public final void test_hello() {
 
 		assertNotNull(this.indexAction);
-		assertEquals("hello.jsp", this.indexAction.hello());
+		assertEquals("/hello.jsp", this.indexAction.hello());
 	}
 
 }

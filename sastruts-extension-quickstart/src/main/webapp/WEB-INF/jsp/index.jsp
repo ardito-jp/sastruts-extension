@@ -29,17 +29,7 @@
 
 <body>
   <div class="container">
-<s:form method="post" action="/auth/login" styleClass="form-signin" >
-    <h2 class="form-signin-heading">Please sign in</h2>
-    <input type="text" name="account" class="form-control" placeholder="Account" required autofocus>
-    <input type="password" name="password" class="form-control" placeholder="Password" required>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="rememberMe" value="On"> Remember me
-      </label>
-    </div>
-    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in" />
-</s:form>
+    <h2 class="form-signin-heading">Welcome !!</h2>
   </div><!-- /container -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

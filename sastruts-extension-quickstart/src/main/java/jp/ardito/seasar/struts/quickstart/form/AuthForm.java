@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *	 http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,38 +13,37 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package jp.ardito.seasar.struts.quickstart.dto;
+package jp.ardito.seasar.struts.quickstart.form;
 
 import java.io.Serializable;
 
 import org.seasar.framework.container.annotation.tiger.Component;
 import org.seasar.framework.container.annotation.tiger.InstanceType;
+import org.seasar.struts.annotation.Arg;
+import org.seasar.struts.annotation.Mask;
+import org.seasar.struts.annotation.Maxlength;
+import org.seasar.struts.annotation.Minlength;
+import org.seasar.struts.annotation.Required;
 
 /**
  * @author Yohji Nihonyanagi
  */
 @SuppressWarnings("javadoc")
 @Component(instance = InstanceType.SESSION)
-public class LoginUserDto implements Serializable {
+public class AuthForm implements Serializable {
 
-	private boolean authenticated;
+	private static final long serialVersionUID = 1L;
 
-	private String account;
+    @Required(target = "login", arg0 = @Arg(key = "key.auth.account"))
+	@Maxlength(maxlength = 32)
+	@Minlength(minlength = 4)
+	@Mask(mask = "^[a-zA-Z0-9_]+$")
+	public String account;
 
-    public boolean isAuthenticated() {
-		return authenticated;
-	}
-
-	public void setAuthenticated(boolean authenticated) {
-		this.authenticated = authenticated;
-	}
-
-	public String getAccount() {
-		return account;
-	}
-
-	public void setAccount(String account) {
-		this.account = account;
-	}
+	@Required(target = "login", arg0 = @Arg(key = "key.auth.password"))
+	@Maxlength(maxlength = 64)
+	@Minlength(minlength = 8)
+	@Mask(mask = "^[a-zA-Z0-9_]+$")
+	public String password;
 
 }

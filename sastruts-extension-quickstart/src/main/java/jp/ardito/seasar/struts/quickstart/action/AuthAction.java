@@ -16,11 +16,16 @@
 package jp.ardito.seasar.struts.quickstart.action;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import jp.ardito.seasar.struts.proxy.Proxy;
 import jp.ardito.seasar.struts.proxy.ProxyType;
 import jp.ardito.seasar.struts.quickstart.dto.LoginUserDto;
+import jp.ardito.seasar.struts.quickstart.form.AuthForm;
 import jp.ardito.seasar.struts.quickstart.proxy.AuthenticationProxy;
+import org.seasar.framework.container.SingletonS2Container;
+import org.seasar.framework.log.Logger;
+import org.seasar.struts.annotation.ActionForm;
 import org.seasar.struts.annotation.Execute;
 
 /**
@@ -29,8 +34,14 @@ import org.seasar.struts.annotation.Execute;
 @Proxy(type = ProxyType.APPEND, proxy = AuthenticationProxy.class)
 public class AuthAction {
 
+	private static final Logger LOGGER = Logger.getLogger(AuthAction.class);
+
+	@ActionForm
 	@Resource
-	private LoginUserDto loginUserDto;
+	private AuthForm authForm;
+
+	@Resource
+	private HttpServletRequest request;
 
 	/**
 	 * <p>~/quickstart/auth</p>
@@ -39,6 +50,10 @@ public class AuthAction {
 	@Execute(validator = false)
 	@Proxy(type = ProxyType.NONE) // 一切のプロキシを適用しない → すべてのリクエストを受け付けるぞ！
 	public String index() {
+
+		if (this.request.getSession(false) != null) {
+			this.request.getSession(false).invalidate();
+		}
 		return "/auth.jsp";
 	}
 
@@ -46,9 +61,26 @@ public class AuthAction {
 	 * <p>~/quickstart/auth/login</p>
 	 * @return リクエスト転送先情報
 	 */
-	@Execute(validator = false)
+	@Execute(validator = true, input = "/auth.jsp")
 	@Proxy(type = ProxyType.NONE) // 一切のプロキシを適用しない → すべてのリクエストを受け付けるぞ！
 	public String login() {
+
+		LOGGER.debug("account=[" + this.authForm.account + "], password=["+ this.authForm.password + "]");
+
+		if (!this.authForm.account.equals("taro") || !this.authForm.password.equals("tarotaro")) {
+			return "/auth.jsp";
+		}
+
+		// Success for Sign in!!
+		// Creating LoginUserDto instance in new session.
+		if (this.request.getSession(false) != null) {
+			this.request.getSession(false).invalidate();
+		}
+		LoginUserDto loginUserDto = SingletonS2Container.getComponent(LoginUserDto.class);
+		loginUserDto.setAccount(this.authForm.account);
+		loginUserDto.setAuthenticated(true);
+
+		// Redirecting to Index ("/").
 		return "/?redirect=true";
 	}
 
