@@ -5,14 +5,15 @@ A Few, Useful Extensions for [SAStruts](http://sastruts.seasar.org/) (Seasar.Org
 
 [SAStruts](http://sastruts.seasar.org/) (Seasar.Org) の拡張コンポーネントです。  
 といっても大袈裟な機能はありません。  
-SAStruts で開発する際の良い意味で「おまけ的な存在」でありたいと思います。(2008/08/31)  
+SAStruts で開発する際の良い意味で「おまけ的な存在」でありたいと思います。(2009/07/31)  
 
 
 
 # Postscript  
 
-Seasar および SAStruts の機能開発 (進化) も止まり、  SAStruts Extension も 2年以上メンテナンスせずに放置していたのですが、  
-引き続き利用してくださっている方もいらっしゃるので細々とメンテナンスを続けていきます。  
+Seasar および SAStruts の機能開発 (進化) も止まりましたが、  
+引き続き、SAStruts と SAStruts Extension を利用してくださっている方もいらっしゃるので、  
+細々とメンテナンスを続けていきます。  
 ホスティングサービスを Google Code から [GitHub](https://github.com/ardito-jp/sastruts-extension) に移行しました。(2014/07/07)  
 
 
@@ -20,47 +21,61 @@ Seasar および SAStruts の機能開発 (進化) も止まり、  SAStruts Ext
 # Overview
 
 + Action Proxying  
-認証や認可といった事前処理 (アクセス制御) や事後処理の仕組みを「アノテーション・ベースで」提供します。  
-ActionProxy を実装したプロキシをAction のクラスやメソッドに対して @Proxy アノテーションで割り当てます。  
+Aciton クラスに対して「アノテーション・ベースでフィルタリング機能」提供します。  
+ActionProxy を実装するプロキシクラスを準備して、  
+Action のクラスやメソッドに対して @Proxy アノテーションによりプロキシクラスを割り当てます。  
+  
+全ての Action に対してデフォルトで適用すべきプロキシクラスを dicon に指定することも可能です。(=デフォルト設定)  
+さらにデフォルト設定を Action 個別でオーバーライドすることも出来ます。    
 
 + Action Field Protecting  
-リクエストパラメーターによる Action フィールドの上書きを禁止するモードを提供します。  
-SAStruts 標準仕様では  
-  ActionForm を定義するとパラメータの保存対象は @ActionForm を用いて指定した ActionForm's field になります。  
-  ActionForm を定義しないとパラメータの保存対象は Action's field になります。  
-　後者の場合に意図しないパラメータによる上書きを防止できます。   
+リクエストパラメータによる Action フィールドの上書きを禁止する仕組みを提供します。  
+SAStruts 標準仕様では、  
+　　@ActionForm を定義すると パラメータの保存対象は @ActionForm に指定した ActionForm のフィールドになりますが、  
+　　@ActionForm を定義しないと パラメータの保存対象は Action のフィールドになります。  
+後者の場合に対して意図しないパラメータによる上書き (や上書きによる例外発生) を防止します。  
 
 
 
 # Quickstart  
 
-	<repositories>
-		<repository><!-- for Seasar Products -->
-			<id>seasar.org.repo</id>
-			<url>http://maven.seasar.org/maven2</url>
-		</repository>
-		<repository><!-- for SAStruts Extension -->
-			<id>ardito.publish.repo</id>
-			<url>http://ardito-jp.github.io/ardito/maven/repo</url>
-		</repository>
-	</repositories>
+``` xml
+  <repositories>
+    <repository><!-- for Seasar Products -->
+      <id>seasar.org.repo</id>
+      <url>http://maven.seasar.org/maven2</url>
+    </repository>
+    <repository><!-- for SAStruts Extension -->
+      <id>ardito.publish.repo</id>
+      <url>http://ardito-jp.github.io/ardito/maven/repo</url>
+    </repository>
+  </repositories>
 
-	<dependencies>
-	  ・
-	  ・
-		<dependency>
-			<groupId>org.seasar.sastruts</groupId>
-			<artifactId>sa-struts</artifactId>
-			<version>1.0.4-sp9</version>
-		</dependency>
-		<dependency><!-- SAStruts Extension -->
-			<groupId>jp.ardito.seasar</groupId>
-			<artifactId>sastruts-extension</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-	</dependencies>  
+  <dependencies>
+        ・
+        ・
+    <dependency>
+      <groupId>org.seasar.sastruts</groupId>
+      <artifactId>sa-struts</artifactId>
+      <version>1.0.4-sp9</version>
+    </dependency>
+    <dependency><!-- SAStruts Extension -->
+      <groupId>jp.ardito.seasar</groupId>
+      <artifactId>sastruts-extension</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+  </dependencies>  
+```
+
   
+
+# Guide & Quickstart  
+
+簡単なガイドとクイックスタート・アプリケーションを Wiki で公開していますのでご覧ください。  
+
+[SAStruts Extension - Wiki](https://github.com/ardito-jp/sastruts-extension/wiki)
   
+
 
 
 # License  
