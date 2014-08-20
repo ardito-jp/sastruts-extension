@@ -38,57 +38,72 @@
 
 <p><a href="http://sastruts.seasar.org/">SAStruts</a> (Seasar.Org) の拡張コンポーネントです。<br>
 といっても大袈裟な機能はありません。<br>
-SAStruts で開発する際の良い意味で「おまけ的な存在」でありたいと思います。(2008/08/31)  </p>
+SAStruts で開発する際の良い意味で「おまけ的な存在」でありたいと思います。(2009/07/31)  </p>
 
 <h1>
 <a name="postscript" class="anchor" href="#postscript"><span class="octicon octicon-link"></span></a>Postscript</h1>
 
-<p>Seasar および SAStruts の機能開発 (進化) も止まり、  SAStruts Extension も 2年以上メンテナンスせずに放置していたのですが、<br>
-引き続き利用してくださっている方もいらっしゃるので細々とメンテナンスを続けていきます。<br>
+<p>Seasar および SAStruts の機能開発 (進化) も止まりましたが、<br>
+引き続き、SAStruts と SAStruts Extension を利用してくださっている方もいらっしゃるので、<br>
+細々とメンテナンスを続けていきます。<br>
 ホスティングサービスを Google Code から <a href="https://github.com/ardito-jp/sastruts-extension">GitHub</a> に移行しました。(2014/07/07)  </p>
 
 <h1>
 <a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h1>
 
 <ul>
-<li><p>Action Proxying<br>
-認証や認可といった事前処理 (アクセス制御) や事後処理の仕組みを「アノテーション・ベースで」提供します。<br>
-ActionProxy を実装したプロキシをAction のクラスやメソッドに対して <a href="https://github.com/Proxy" class="user-mention">@Proxy</a> アノテーションで割り当てます。  </p></li>
-<li><p>Action Field Protecting<br>
-リクエストパラメーターによる Action フィールドの上書きを禁止するモードを提供します。<br>
-SAStruts 標準仕様では<br>
-ActionForm を定義するとパラメータの保存対象は @ActionForm を用いて指定した ActionForm's field になります。<br>
-ActionForm を定義しないとパラメータの保存対象は Action's field になります。<br>
-　後者の場合に意図しないパラメータによる上書きを防止できます。   </p></li>
+<li>Action Proxying<br>
+Aciton クラスに対して「アノテーション・ベースでフィルタリング機能」提供します。<br>
+ActionProxy を実装するプロキシクラスを準備して、<br>
+Action のクラスやメソッドに対して <a href="https://github.com/Proxy" class="user-mention">@Proxy</a> アノテーションによりプロキシクラスを割り当てます。<br>
+</li>
+</ul><p>全ての Action に対してデフォルトで適用すべきプロキシクラスを dicon に指定することも可能です。(=デフォルト設定)<br>
+さらにデフォルト設定を Action 個別でオーバーライドすることも出来ます。    </p>
+
+<ul>
+<li>Action Field Protecting<br>
+リクエストパラメータによる Action フィールドの上書きを禁止する仕組みを提供します。<br>
+SAStruts 標準仕様では、<br>
+　　@ActionForm を定義すると パラメータの保存対象は @ActionForm に指定した ActionForm のフィールドになりますが、<br>
+　　@ActionForm を定義しないと パラメータの保存対象は Action のフィールドになります。<br>
+後者の場合に対して意図しないパラメータによる上書き (や上書きによる例外発生) を防止します。<br>
+</li>
 </ul><h1>
 <a name="quickstart" class="anchor" href="#quickstart"><span class="octicon octicon-link"></span></a>Quickstart</h1>
 
-<pre><code>&lt;repositories&gt;
-    &lt;repository&gt;&lt;!-- for Seasar Products --&gt;
-        &lt;id&gt;seasar.org.repo&lt;/id&gt;
-        &lt;url&gt;http://maven.seasar.org/maven2&lt;/url&gt;
-    &lt;/repository&gt;
-    &lt;repository&gt;&lt;!-- for SAStruts Extension --&gt;
-        &lt;id&gt;ardito.publish.repo&lt;/id&gt;
-        &lt;url&gt;http://ardito-jp.github.io/ardito/maven/repo&lt;/url&gt;
-    &lt;/repository&gt;
-&lt;/repositories&gt;
+<div class="highlight highlight-xml"><pre>  <span class="nt">&lt;repositories&gt;</span>
+    <span class="nt">&lt;repository&gt;</span><span class="c">&lt;!-- for Seasar Products --&gt;</span>
+      <span class="nt">&lt;id&gt;</span>seasar.org.repo<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;url&gt;</span>http://maven.seasar.org/maven2<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/repository&gt;</span>
+    <span class="nt">&lt;repository&gt;</span><span class="c">&lt;!-- for SAStruts Extension --&gt;</span>
+      <span class="nt">&lt;id&gt;</span>ardito.publish.repo<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;url&gt;</span>http://ardito-jp.github.io/ardito/maven/repo<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/repository&gt;</span>
+  <span class="nt">&lt;/repositories&gt;</span>
 
-&lt;dependencies&gt;
-  ・
-  ・
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.seasar.sastruts&lt;/groupId&gt;
-        &lt;artifactId&gt;sa-struts&lt;/artifactId&gt;
-        &lt;version&gt;1.0.4-sp9&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;&lt;!-- SAStruts Extension --&gt;
-        &lt;groupId&gt;jp.ardito.seasar&lt;/groupId&gt;
-        &lt;artifactId&gt;sastruts-extension&lt;/artifactId&gt;
-        &lt;version&gt;1.0.0&lt;/version&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;  
-</code></pre>
+  <span class="nt">&lt;dependencies&gt;</span>
+        ・
+        ・
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.seasar.sastruts<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>sa-struts<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.0.4-sp9<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span><span class="c">&lt;!-- SAStruts Extension --&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>jp.ardito.seasar<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>sastruts-extension<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>  
+</pre></div>
+
+<h1>
+<a name="guide--quickstart" class="anchor" href="#guide--quickstart"><span class="octicon octicon-link"></span></a>Guide &amp; Quickstart</h1>
+
+<p>簡単なガイドとクイックスタート・アプリケーションを Wiki で公開していますのでご覧ください。  </p>
+
+<p><a href="https://github.com/ardito-jp/sastruts-extension/wiki">SAStruts Extension - Wiki</a></p>
 
 <h1>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
