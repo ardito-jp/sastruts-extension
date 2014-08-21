@@ -52,24 +52,20 @@ SAStruts で開発する際の良い意味で「おまけ的な存在」であ�
 <a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h1>
 
 <ul>
-<li>Action Proxying<br>
-Aciton クラスに対して「アノテーション・ベースでフィルタリング機能」提供します。<br>
+<li><p>Action Proxying<br>
+　Aciton クラスに対して「アノテーション・ベースでフィルタリング機能」提供します。<br>
 ActionProxy を実装するプロキシクラスを準備して、<br>
 Action のクラスやメソッドに対して <a href="https://github.com/Proxy" class="user-mention">@Proxy</a> アノテーションによりプロキシクラスを割り当てます。<br>
-</li>
-</ul><p>全ての Action に対してデフォルトで適用すべきプロキシクラスを dicon に指定することも可能です。(=デフォルト設定)<br>
-さらにデフォルト設定を Action 個別でオーバーライドすることも出来ます。    </p>
-
-<ul>
-<li>Action Field Protecting<br>
+　全ての Action に対してデフォルトで適用するプロキシクラスを指定することも可能です。(=デフォルト設定)<br>
+さらにデフォルト設定を Action 個別でオーバーライドすることも出来ます。    </p></li>
+<li><p>Action Field Protecting<br>
 リクエストパラメータによる Action フィールドの上書きを禁止する仕組みを提供します。<br>
 SAStruts 標準仕様では、<br>
 　　@ActionForm を定義すると パラメータの保存対象は @ActionForm に指定した ActionForm のフィールドになりますが、<br>
 　　@ActionForm を定義しないと パラメータの保存対象は Action のフィールドになります。<br>
-後者の場合に対して意図しないパラメータによる上書き (や上書きによる例外発生) を防止します。<br>
-</li>
+後者の場合に対して意図しないパラメータによる上書き (や上書きによる例外発生) を防止します。  </p></li>
 </ul><h1>
-<a name="quickstart" class="anchor" href="#quickstart"><span class="octicon octicon-link"></span></a>Quickstart</h1>
+<a name="pom" class="anchor" href="#pom"><span class="octicon octicon-link"></span></a>POM</h1>
 
 <div class="highlight highlight-xml"><pre>  <span class="nt">&lt;repositories&gt;</span>
     <span class="nt">&lt;repository&gt;</span><span class="c">&lt;!-- for Seasar Products --&gt;</span>
