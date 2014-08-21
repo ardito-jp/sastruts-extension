@@ -32,7 +32,7 @@ import org.junit.BeforeClass;
 import org.seasar.struts.config.S2ActionMapping;
 
 /**
- * @author nihonyanagiy25
+ * @author Yohji Nihonyanagi
  */
 public class A3RequestProcessorTest {
 
