@@ -21,11 +21,10 @@ Seasar および SAStruts の機能開発 (進化) も止まりましたが、
 # Overview
 
 + Action Proxying  
-Aciton クラスに対して「アノテーション・ベースでフィルタリング機能」提供します。  
+　Aciton クラスに対して「アノテーション・ベースでフィルタリング機能」提供します。  
 ActionProxy を実装するプロキシクラスを準備して、  
 Action のクラスやメソッドに対して @Proxy アノテーションによりプロキシクラスを割り当てます。  
-  
-全ての Action に対してデフォルトで適用すべきプロキシクラスを dicon に指定することも可能です。(=デフォルト設定)  
+　全ての Action に対してデフォルトで適用するプロキシクラスを指定することも可能です。(=デフォルト設定)  
 さらにデフォルト設定を Action 個別でオーバーライドすることも出来ます。    
 
 + Action Field Protecting  
@@ -37,7 +36,7 @@ SAStruts 標準仕様では、
 
 
 
-# Quickstart  
+# POM  
 
 ``` xml
   <repositories>
