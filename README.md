@@ -61,7 +61,7 @@ SAStruts 標準仕様では、
     <dependency><!-- SAStruts Extension -->
       <groupId>jp.ardito.seasar</groupId>
       <artifactId>sastruts-extension</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1</version>
     </dependency>
   </dependencies>  
 ```
@@ -70,7 +70,7 @@ SAStruts 標準仕様では、
 
 # Guide & Quickstart  
 
-簡単なガイドとクイックスタート・アプリケーションを Wiki で公開していますのでご覧ください。  
+ご利用方法やクイックスタート・アプリケーションを Wiki で公開しています。  
 
 [SAStruts Extension - Wiki](https://github.com/ardito-jp/sastruts-extension/wiki)
   
