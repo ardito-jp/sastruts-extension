@@ -36,7 +36,7 @@ SAStruts 標準仕様では、
 
 
 
-# POM  
+# Maven  
 
 ``` xml
   <repositories>
@@ -45,8 +45,8 @@ SAStruts 標準仕様では、
       <url>http://maven.seasar.org/maven2</url>
     </repository>
     <repository><!-- for SAStruts Extension -->
-      <id>ardito.publish.repo</id>
-      <url>http://ardito-jp.github.io/ardito/maven/repo</url>
+      <id>ardito.published.repo</id>
+      <url>http://ardito-jp.github.io/maven/repo</url>
     </repository>
   </repositories>
 
@@ -68,7 +68,7 @@ SAStruts 標準仕様では、
 
   
 
-# Guide & Quickstart  
+# Getting Started  
 
 ご利用方法やクイックスタート・アプリケーションを Wiki で公開しています。  
 
