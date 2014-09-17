@@ -44,6 +44,7 @@ import org.seasar.struts.annotation.Execute;
 import org.seasar.struts.config.S2ExecuteConfig;
 import org.seasar.struts.config.S2ValidationConfig;
 import org.seasar.struts.enums.SaveType;
+import org.seasar.struts.exception.IllegalUrlPatternRuntimeException;
 
 /**
  * <p>Test class for {@link A3ExecuteConfig}.</p>
@@ -282,27 +283,52 @@ public class A3ExecuteConfigTest {
 	}
 
 	/**
-	 * Test method for {@link A3ExecuteConfig#isUrlPatternAllSelected()}.
+	 * Test method for {@link A3ExecuteConfig#isUrlPatternAllSelected()}.<br />
+	 * Test method for {@link A3ExecuteConfig#getUrlPattern()}.<br />
+	 * Test method for {@link A3ExecuteConfig#setUrlPattern(String)}.
 	 */
 	@Test
-	public final void testIsUrlPatternAllSelected() {
-		// TODO: 要 テストコード実装！
+	public final void test_isUrlPatternAllSelected_getUrlPattern_setUrlPattern() {
+
+		assertEquals(this.index.getName(), this.config.getUrlPattern());
+		assertEquals(this.index.getName(), this.original.getUrlPattern());
+		assertFalse(this.config.isUrlPatternAllSelected());
+		assertFalse(this.original.isUrlPatternAllSelected());
+
+		this.config.setUrlPattern("");
+		assertEquals(this.index.getName(), this.config.getUrlPattern());
+		assertEquals(this.index.getName(), this.original.getUrlPattern());
+		assertFalse(this.config.isUrlPatternAllSelected());
+		assertFalse(this.original.isUrlPatternAllSelected());
+
+		this.config.setUrlPattern("{employeeId}");
+		assertEquals("{employeeId}", this.config.getUrlPattern());
+		assertEquals("{employeeId}", this.original.getUrlPattern());
+		assertTrue(this.config.isUrlPatternAllSelected());
+		assertTrue(this.original.isUrlPatternAllSelected());
+
+		try {
+			this.config.setUrlPattern("}{");
+			fail();
+		} catch (Exception e) {
+			assertEquals(IllegalUrlPatternRuntimeException.class, e.getClass());
+			assertEquals("[ESAS0007]URLパターン\"}{\"の{}の対応が取れていません。", e.getMessage());
+		}
 	}
 
 	/**
-	 * Test method for {@link A3ExecuteConfig#isRemoveActionForm()}.
-	 */
-	@Test
-	public final void testIsRemoveActionForm() {
-		// TODO: 要 テストコード実装！
-	}
-
-	/**
+	 * Test method for {@link A3ExecuteConfig#isRemoveActionForm()}.<br />
 	 * Test method for {@link A3ExecuteConfig#setRemoveActionForm(boolean)}.
 	 */
 	@Test
-	public final void testSetRemoveActionForm() {
-		// TODO: 要 テストコード実装！
+	public final void test_isRemoveActionForm_setRemoveActionForm() {
+
+		assertFalse(this.config.isRemoveActionForm()); // Default value is FALSE.
+		assertFalse(this.original.isRemoveActionForm());
+
+		this.config.setRemoveActionForm(true);
+		assertTrue(this.config.isRemoveActionForm());
+		assertTrue(this.original.isRemoveActionForm());
 	}
 
 	/**
@@ -310,22 +336,6 @@ public class A3ExecuteConfigTest {
 	 */
 	@Test
 	public final void testResolveInputS2ActionMapping() {
-		// TODO: 要 テストコード実装！
-	}
-
-	/**
-	 * Test method for {@link A3ExecuteConfig#getUrlPattern()}.
-	 */
-	@Test
-	public final void testGetUrlPattern() {
-		// TODO: 要 テストコード実装！
-	}
-
-	/**
-	 * Test method for {@link A3ExecuteConfig#setUrlPattern(java.lang.String)}.
-	 */
-	@Test
-	public final void testSetUrlPatternString() {
 		// TODO: 要 テストコード実装！
 	}
 
@@ -349,7 +359,7 @@ public class A3ExecuteConfigTest {
 	 * Test method for {@link A3ExecuteConfig#getQueryString(String)}.
 	 */
 	@Test
-	public final void test_getQueryStringString() {
+	public final void test_getQueryString() {
 
 		assertEquals(this.original.getQueryString(null), this.config.getQueryString(null));
 		assertEquals(this.original.getQueryString(""), this.config.getQueryString(""));
