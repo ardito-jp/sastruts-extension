@@ -312,7 +312,6 @@ public class A3ExecuteConfigTest {
 			fail();
 		} catch (Exception e) {
 			assertEquals(IllegalUrlPatternRuntimeException.class, e.getClass());
-			assertEquals("[ESAS0007]URLパターン\"}{\"の{}の対応が取れていません。", e.getMessage());
 		}
 	}
 
