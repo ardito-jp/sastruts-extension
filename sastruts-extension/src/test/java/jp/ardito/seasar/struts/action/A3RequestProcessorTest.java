@@ -29,6 +29,8 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.seasar.struts.config.S2ActionMapping;
 
 /**
@@ -69,8 +71,8 @@ public class A3RequestProcessorTest {
 	/**
 	 * Test of {@link A3RequestProcessor#processActionCreate(HttpServletRequest, HttpServletResponse, ActionMapping)}.
 	 */
-//	@Test
-//	@Ignore
+	@Test
+	@Ignore
 	public final void testProcessActionCreateHttpServletRequestHttpServletResponseActionMapping() {
 
 		HttpServletRequest request = EasyMock.createMock(HttpServletRequest.class);
