@@ -1,0 +1,10 @@
+language: java
+
+install: echo "Hi!"
+ 
+script: cd ./sastruts-extension && mvn clean install
+ 
+after_success: mvn cobertura:cobertura
+ 
+jdk:
+  - oraclejdk6
