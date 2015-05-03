@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ardito-jp/sastruts-extension.svg?branch=master)](https://travis-ci.org/ardito-jp/sastruts-extension)
+
 # What is SAStruts Extension ?  
 
 A Few, Useful Extensions for [SAStruts](http://sastruts.seasar.org/) (Seasar.Org)  
